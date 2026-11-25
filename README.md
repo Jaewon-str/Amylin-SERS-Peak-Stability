@@ -39,3 +39,23 @@ else:
 ```
 
 My first attempt to open the workbook raised an ImportError because openpyxl was missing. I installed it with python3 -m pip install openpyxl, reran the script, and confirmed that Fig.4c appeared in the worksheet list.
+
+### Importing and verifying the 2h spectrum
+
+I intentially loaded columns A and C from the "Figure.4c" worksheet to choose the Raman shift and SERS intensity for 10μM hIAPP after 2h of incubation at pH 5.5. I used 'header = 1' because the first row contains the experimental conditions and the second row contains the column labels. Below is the code:
+
+```python
+spectrum = pd.read_excel(workbook, sheet_name="Fig.4c", header=1, usecols="A,C")
+print(spectrum.head())
+```
+
+I compared the first five rows with the values in Excel and found that they are the same. In other words, the python program successfully imported the 2h spectrum drawn by Excel.
+
+```text
+   wavenumber        2 h
+0     302.463  135.54574
+1     303.991  159.43101
+2     305.519  180.35156
+3     307.046  198.30740
+4     308.574  213.29852
+```
