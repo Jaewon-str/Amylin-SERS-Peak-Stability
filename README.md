@@ -8,4 +8,4 @@ All dataset was downloaded from https://doi.org/10.6084/m9.figshare.23591901. Th
 
 Based on the excel data provided by the author, we drew a SERS spectrum without smoothing~
 
-<img width="359" height="215" alt="image" src="https://github.com/user-attachments/assets/bca9a7e9-09c0-4543-9b4f-548e4868162c" />
+<img width="359" height="215" alt="image" src="https://github.com/user-attachments/assets/baa44c30-4790-44fc-b8b8-94b2966d99bc" />
