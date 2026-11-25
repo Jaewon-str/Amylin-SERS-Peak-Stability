@@ -24,11 +24,18 @@ These positions are visual estimates from the spectrum as provided. No additiona
 
 After plotting the spectrum in Excel, I opened the same source workbook in Python and listed its worksheets. This confirmed that Fig.4c was available for the next step. I defined the workbook path relative to the script so the code can run from another computer using the same folder structure. Below is the code: 
 
+```python
 from pathlib import Path
 import pandas as pd
 
-file_path = Path(__file__).parent / "Amylin Raw Data" / "Raw_Data.xlsx"
-workbook = pd.ExcelFile(file_path, engine="openpyxl")
-print(workbook.sheet_names)
+file_path = Path(__file__).parent / "Amylin Raw Data" / "Raw_Data.xlsx" #Amylin Raw Data 폴더 안에 있는 Raw_Data.xlsx 파일을 열어라
+print("엑셀 파일을 찾는 위치:", file_path.resolve()) #Where to find the excel file
+
+if file_path.is_file():
+    workbook = pd.ExcelFile(file_path, engine="openpyxl")
+    print("시트 목록:", workbook.sheet_names) # Sheet names in the excel file
+else:
+    print("이 위치에 엑셀 파일이 없어. file_path를 확인해 줘.") # No excel file found at this location. Please check the file_path.
+```
 
 My first attempt to open the workbook raised an ImportError because openpyxl was missing. I installed it with python3 -m pip install openpyxl, reran the script, and confirmed that Fig.4c appeared in the worksheet list.
