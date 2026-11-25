@@ -18,4 +18,4 @@ I first plotted the full spectrum in Excel using the Raman shift in column A and
 
 I plotted the 1550–1750 cm⁻¹ range to match the wavenumber range shown in Figure 4f of Fu et al. (2023). The dominant band reaches a maximum near 1655 cm⁻¹. It rises steeply from a local minimum near 1630 cm⁻¹ and decreases more gradually on the higher-wavenumber side. Two weaker features are visible near 1570 and 1605–1610 cm⁻¹.
 
-These positions are visual estimates from the spectrum as provided. I will use the band near 1655 cm⁻¹ as a reference when testing how the smoothing window affects the position of the corresponding minimum in the second derivative.
+These positions are visual estimates from the spectrum as provided. No additional smoothing or baseline correction was applied. I will use the band near 1655 cm⁻¹ as a reference when testing how the smoothing window affects the position of the corresponding minimum in the second derivative.
