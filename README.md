@@ -19,3 +19,16 @@ I first plotted the full spectrum in Excel using the Raman shift in column A and
 I plotted the 1550–1750 cm⁻¹ range to match the wavenumber range shown in Figure 4f of Fu et al. (2023). The dominant band reaches a maximum near 1655 cm⁻¹. It rises steeply from a local minimum near 1630 cm⁻¹ and decreases more gradually on the higher-wavenumber side. Two weaker features are visible near 1570 and 1605–1610 cm⁻¹.
 
 These positions are visual estimates from the spectrum as provided. No additional smoothing or baseline correction was applied. I will use the band near 1655 cm⁻¹ as a reference when testing how the smoothing window affects the position of the corresponding minimum in the second derivative.
+
+# Opening the source workbook in Python
+
+After plotting the spectrum in Excel, I opened the same source workbook in Python and listed its worksheets. This confirmed that Fig.4c was available for the next step. I defined the workbook path relative to the script so the code can run from another computer using the same folder structure. Below is the code: 
+
+from pathlib import Path
+import pandas as pd
+
+file_path = Path(__file__).parent / "Amylin Raw Data" / "Raw_Data.xlsx"
+workbook = pd.ExcelFile(file_path, engine="openpyxl")
+print(workbook.sheet_names)
+
+My first attempt to open the workbook raised an ImportError because openpyxl was missing. I installed it with python3 -m pip install openpyxl, reran the script, and confirmed that Fig.4c appeared in the worksheet list.
