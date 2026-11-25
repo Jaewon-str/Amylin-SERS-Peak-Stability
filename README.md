@@ -10,3 +10,7 @@ I selected the representative SERS spectrum of 10 μM human islet amyloid polype
 <img width="359" height="215" alt="image" src="https://github.com/user-attachments/assets/baa44c30-4790-44fc-b8b8-94b2966d99bc" />
 
 I first plotted the full spectrum in Excel using the Raman shift in column A and the 2 h SERS intensity in column C. This gave me a visual check that I had selected the intended columns and showed where the amide I band appeared within the full spectrum. I used the intensity values as provided, without applying additional smoothing or baseline correction. This plot serves as the reference for the subsequent peak analysis.
+
+<img width="364" height="214" alt="image" src="https://github.com/user-attachments/assets/38566324-871a-41fa-ba8d-a82556cfba05" />
+
+Amide region was chosen
