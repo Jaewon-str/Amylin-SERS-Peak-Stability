@@ -159,9 +159,46 @@ To determine how sensitive the detected peak position is to smoothing, I will ne
 
 All three smoothing windows preserved the dominant amide I band in Figure 3, and i checked if they also placed its second-derivative minimum at the same Raman shift. The second derivative was calculated from the same evenly spaced spectrum using 7-, 15-, and 25-point Savitzky–Golay windows. I kept the polynomial order fixed at 3 and compared the curves within the predefined 1640–1670 cm⁻¹ interval.
 
+I calculated each derivative across the full 1550–1750 cm⁻¹ region so that points just outside the tracking interval could contribute to the estimate near its boundaries. I used the spacing between adjacent points on the interpolated grid as `delta`, then zoomed in on 1640–1670 cm⁻¹ for Figure 4.
+
+<details>
+<summary>View the Python code for Figure 4</summary>
+
+```python
+# Use the evenly spaced Raman shifts and intensities prepared for Figure 3.
+delta_shift = uniform_shift[1] - uniform_shift[0]
+fig_deriv, ax_deriv = plt.subplots(figsize=(8, 5))
+
+for window in [7, 15, 25]:
+    second_derivative = savgol_filter(
+        uniform_intensity,
+        window_length=window,
+        polyorder=3,
+        deriv=2,
+        delta=delta_shift,
+    )
+    ax_deriv.plot(
+        uniform_shift, second_derivative, label=f"{window}-point window"
+    )
+
+ax_deriv.axhline(0, color="gray", linewidth=0.8, linestyle="--")
+ax_deriv.set_xlim(1640, 1670)
+ax_deriv.set_xlabel("Raman shift (cm⁻¹)")
+ax_deriv.set_ylabel("Second derivative [a.u. / (cm⁻¹)²]")
+ax_deriv.set_title("Second derivative of the hIAPP amide I band")
+ax_deriv.legend()
+fig_deriv.tight_layout()
+plt.show()
+```
+
+</details>
+
+
 <img width="800" height="500" alt="Figure 2_Second Derivative of the hlAPP amide I band" src="https://github.com/user-attachments/assets/3e5ffdca-8ae7-4ee9-8f8f-bcd8f5da3df9" />
 
 *Figure 4. Second derivative of the SERS spectrum of 10 μM hIAPP after 2 h at pH 5.5, calculated with 7-, 15-, and 25-point Savitzky–Golay windows. The dashed line marks zero.*
+
+I estimated the minimum position for each window by visually locating the bottom of its curve in Figure 4.
 
 | Window length | Approximate minimum (cm⁻¹) | Appearance |
 |---|---:|---|
