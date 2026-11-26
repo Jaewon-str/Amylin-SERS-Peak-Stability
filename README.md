@@ -147,7 +147,10 @@ fig.tight_layout()
 plt.show()
 ```
 
-![Original hIAPP SERS measurements overlaid with three smoothed curves. The widest window lowers the height of the dominant peak near 1655 cm⁻¹.](.\Figure 1_Effect of smoothing window on the hlAPP amide I band.png) 
+![Original hIAPP SERS measurements overlaid with three smoothed curves. The widest window lowers the height of the dominant peak near 1655 cm⁻¹.](.\<img width="800" height="500" alt="Figure 1_Effect of smoothing window on the hlAPP amide I band" src="https://github.com/user-attachments/assets/553b45db-ffa5-4b36-891e-b0d1d747e31d" />![Uploading Figure 1_Effect of smoothing window on the hlAPP amide I band.png…]()
+
+
+Figure 1_Effect of smoothing window on the hlAPP amide I band.png) 
 
 *Figure 3. SERS spectrum of 10 μM hIAPP after 2 h at pH 5.5. Black dots show the original measurements. Blue, orange, and green curves show the 7-, 15-, and 25-point windows, respectively. Measured from the first to the last point, these windows span approximately 7.6, 17.7, and 30.4 cm⁻¹.*
 
