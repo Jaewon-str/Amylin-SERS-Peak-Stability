@@ -197,7 +197,7 @@ plt.show()
 I estimated the minimum position for each window by visually locating the bottom of its curve in Figure 4.
 
 | Window length | Approximate minimum (cm⁻¹) | Appearance |
-|---|---:|---|
+|:---:|:---:|:---:|
 | 7 points | 1652 | Deepest and narrowest minimum |
 | 15 points | 1654 | Intermediate depth and width |
 | 25 points | 1655 | Shallowest and broadest minimum |
