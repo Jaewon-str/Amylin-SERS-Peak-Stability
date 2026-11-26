@@ -257,3 +257,18 @@ print(
 Each window yielded one candidate. Its position on the interpolated grid increased from 1652.40 cm⁻¹ with the 7-point window to 1653.67 cm⁻¹ with the 15-point window and 1654.93 cm⁻¹ with the 25-point window. These values agreed with my visual estimates from Figure 4.
 
 The difference between the 7- and 25-point results was 2.53 cm⁻¹, about twice the median spacing between adjacent points in the original spectrum (1.266 cm⁻¹). Across the three settings, I could consistently detect one minimum in the target interval, but its estimated position depended on the smoothing window. Since all three calculations used the same 2 h spectrum, this spread shows how much the processing choice alone affected the position I would report for this band.
+
+### Reproducing the analysis
+
+I used the `Fig.4c` worksheet in `Raw_Data.xlsx`. Column A contains the Raman shifts, and column C contains the 2 h spectrum for 10 μM hIAPP at pH 5.5.
+
+1. Download `Raw_Data.xlsx` from the [source dataset on Figshare](https://doi.org/10.6084/m9.figshare.23591901).
+2. In the folder containing `inspect_spectrum.py`, create a folder named `Amylin Raw Data` and place `Raw_Data.xlsx` inside it.
+3. From the folder containing the script, run the following commands in a Python environment.
+
+```bash
+python3 -m pip install pandas openpyxl numpy scipy matplotlib
+python3 inspect_spectrum.py
+```
+
+The script displays the smoothed spectra (Figure 3) and their second derivatives (Figure 4). It also prints one minimum per window in the 1640–1670 cm⁻¹ interval. For the 7-, 15-, and 25-point windows, I obtained 1652.40, 1653.67, and 1654.93 cm⁻¹, respectively.
