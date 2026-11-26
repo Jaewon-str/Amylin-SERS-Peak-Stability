@@ -215,7 +215,7 @@ To answer this question, I will use the same rule for all three smoothing window
 I estimated the minimum positions by eye in Figure 4, then checked those estimates in Python. For each window, I used `find_peaks(-second_derivative)` to locate the valleys in the second-derivative curve. I kept every local minimum within 1640–1670 cm⁻¹ whose second-derivative value was below zero.
 
 
-<summary>View the Python code for detecting and reporting the minima</summary>
+<summary> Python code for detecting and reporting the minima</summary>
 
 I added `find_peaks` to the existing SciPy import at the top of `inspect_spectrum.py`.
 
