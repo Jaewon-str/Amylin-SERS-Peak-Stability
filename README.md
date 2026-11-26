@@ -91,3 +91,30 @@ print(f"파수 간격 (최소 / 중앙 / 최대): {spacing.min():.3f} / {spacing
 ```
 
 This completed my pre-smoothing data check. I recorded the median spacing so I could later relate each smoothing window, specified in points, to its approximate width in cm⁻¹.
+
+### Selecting the amide I band and defining the tracking rule
+
+In the Excel plot, the dominant band was located near 1655 cm⁻¹, so I selected 1640–1670 cm⁻¹ as the tracking interval because it includes the band and excludes the weaker feature near 1610 cm⁻¹. Before applying any additional smoothing, I located the measured point with the highest SERS intensity in this interval.
+
+```python
+target = region.loc[region["shift"].between(1640, 1670)] #looking for the target region between 1640 and 1670 cm⁻¹
+peak = target.loc[target["intensity"].idxmax()] #finding the strongest peak in the target region, and read the corresponding wavenumber and intensity
+
+print(f"추적 구간: 1640–1670 cm⁻¹ (측정점 {len(target)}개)")
+print(f"최고 강도를 보인 파수: {peak['shift']:.3f} cm⁻¹")
+print(f"그 지점의 SERS 강도: {peak['intensity']:.2f} a.u.")
+```
+
+**Terminal output**
+
+```text
+추적 구간: 1640–1670 cm⁻¹ (측정점 24개) #target region: 1640–1670 cm⁻¹ (number of measurement points)
+최고 강도를 보인 파수: 1655.660 cm⁻¹ #strongest peak wavenumber
+그 지점의 SERS 강도: 2158.19 a.u. #SERS intensity at that point
+```
+
+Of the 24 measured points in the interval, the highest intensity was 2158.19 a.u. at 1655.660 cm⁻¹. This gives me a reference position on the original intensity curve.
+
+**Tracking rule for the smoothing comparison**
+
+For each smoothing window, I will use the same 1640–1670 cm⁻¹ interval and identify local minima where the second derivative is negative. If there is one candidate, its position will be recorded. Likewise, if there are several, all their positions will be recorded. If there are none, I will record “no candidate detected.” This enables to test if the same feature remains identifiable as the smoothing window changes.
