@@ -159,9 +159,9 @@ To determine how sensitive the detected peak position is to smoothing, I will ne
 
 All three smoothing windows preserved the dominant amide I band in Figure 3, and i checked if they also placed its second-derivative minimum at the same Raman shift. The second derivative was calculated from the same evenly spaced spectrum using 7-, 15-, and 25-point Savitzky–Golay windows. I kept the polynomial order fixed at 3 and compared the curves within the predefined 1640–1670 cm⁻¹ interval.
 
-![Second-derivative curves showing a progressively shallower minimum at a higher Raman shift as the smoothing window increases](./amide_i_second_derivative.png)
+<img width="800" height="500" alt="Figure 2_Second Derivative of the hlAPP amide I band" src="https://github.com/user-attachments/assets/3e5ffdca-8ae7-4ee9-8f8f-bcd8f5da3df9" />
 
-*Figure 4. Second derivative of the SERS spectrum of 10 μM hIAPP after 2 h at pH 5.5. The dashed line marks zero. The positions below are visual estimates from the plotted curves.*
+*Figure 4. Second derivative of the SERS spectrum of 10 μM hIAPP after 2 h at pH 5.5, calculated with 7-, 15-, and 25-point Savitzky–Golay windows. The dashed line marks zero.*
 
 | Window length | Approximate minimum (cm⁻¹) | Appearance |
 |---|---:|---|
