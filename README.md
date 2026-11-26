@@ -205,3 +205,9 @@ I estimated the minimum position for each window by visually locating the bottom
 Each curve showed one visible negative minimum in the tracking interval. As the window increased from 7 to 25 points, the minimum became broader and shallower, and its apparent position moved by about 3 cm⁻¹ toward higher Raman shift.
 
 This comparison matters because a band position can inform a proposed structural assignment. Here, changing only the smoothing window moved the estimated minimum within a single spectrum. The broad feature remained visible across all three settings, but its precise location depended on how I processed the data. I will quantify that sensitivity by extracting the minimum positions in Python and comparing their spread with the spacing between measured points.
+
+### Quantifying the effect of window length on the minimum position
+
+In Figure 4, I estimated the positions of the second-derivative minima by eye. How large is the apparent shift compared with the spacing between measured points?
+
+To answer this question, I will use the same rule for all three smoothing windows. Within 1640–1670 cm⁻¹, I will record every local minimum with a negative second-derivative value. If each window yields one candidate, the difference between the highest and lowest candidate positions will be calculated and compared with the median spacing of the original measurements (1.266 cm⁻¹). If a window yields zero or multiple candidates, I will report that count explicitly.
