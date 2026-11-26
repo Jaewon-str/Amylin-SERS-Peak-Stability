@@ -211,3 +211,49 @@ This comparison matters because a band position can inform a proposed structural
 In Figure 4, I estimated the positions of the second-derivative minima by eye. How large is the apparent shift compared with the spacing between measured points?
 
 To answer this question, I will use the same rule for all three smoothing windows. Within 1640–1670 cm⁻¹, I will record every local minimum with a negative second-derivative value. If each window yields one candidate, the difference between the highest and lowest candidate positions will be calculated and compared with the median spacing of the original measurements (1.266 cm⁻¹). If a window yields zero or multiple candidates, I will report that count explicitly.
+
+I estimated the minimum positions by eye in Figure 4, then checked those estimates in Python. For each window, I used `find_peaks(-second_derivative)` to locate the valleys in the second-derivative curve. I kept every local minimum within 1640–1670 cm⁻¹ whose second-derivative value was below zero.
+
+<details>
+<summary>View the Python code for detecting and reporting the minima</summary>
+
+I added `find_peaks` to the existing SciPy import at the top of `inspect_spectrum.py`.
+
+```python
+from scipy.signal import savgol_filter, find_peaks
+```
+
+Inside the loop that generated Figure 4, I added the following lines immediately after `ax_deriv.plot(...)`. For each window, `find_peaks(-second_derivative)` locates the valleys by turning them into peaks. I searched the full curve first so that points near the boundaries of the tracking interval could still be compared with their neighbors on both sides.
+
+```python
+minima, _ = find_peaks(-second_derivative)
+
+in_target = (
+    (uniform_shift[minima] >= 1640)
+    & (uniform_shift[minima] <= 1670)
+    & (second_derivative[minima] < 0)
+)
+positions = uniform_shift[minima[in_target]]
+
+print(
+    f"{window}점 창 | 후보 {len(positions)}개 | "
+    f"위치(cm⁻¹): {positions.round(2)}"
+)
+```
+
+`minima` contains array indices. I used `uniform_shift` to convert the selected indices into Raman shifts and printed every candidate so I could check how many each window produced. I rounded the positions to two decimal places for display.
+
+</details>
+
+
+**Terminal output**
+
+```text
+7점 창 | 후보 1개 | 위치(cm⁻¹): [1652.4]
+15점 창 | 후보 1개 | 위치(cm⁻¹): [1653.67]
+25점 창 | 후보 1개 | 위치(cm⁻¹): [1654.93]
+```
+
+Each window yielded one candidate. Its position on the interpolated grid increased from 1652.40 cm⁻¹ with the 7-point window to 1653.67 cm⁻¹ with the 15-point window and 1654.93 cm⁻¹ with the 25-point window. These values agreed with my visual estimates from Figure 4.
+
+The difference between the 7- and 25-point results was 2.53 cm⁻¹, about twice the median spacing between adjacent points in the original spectrum (1.266 cm⁻¹). Across the three settings, I could consistently detect one minimum in the target interval, but its estimated position depended on the smoothing window. Since all three calculations used the same 2 h spectrum, this spread shows how much the processing choice alone affected the position I would report for this band.
