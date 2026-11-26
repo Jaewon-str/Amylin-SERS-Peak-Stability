@@ -59,3 +59,35 @@ I compared the first five rows with the values in Excel and found that they are 
 3     307.046  198.30740
 4     308.574  213.29852
 ```
+
+### Checking the spectrum before smoothing
+
+Before applyin additional smoothing, I checked the 2 h spectrum from `Fig.4c` for missing values, duplicate Raman shifts, and the order of the measurement points. And then, I calculated the spacing between consecutive points in the 1550–1750 cm⁻¹ region.
+
+```python
+spectrum.columns = ["shift", "intensity"]
+
+print("파수 결측값 개수:", spectrum["shift"].isna().sum()) #wavenumber missing values count
+print("강도 결측값 개수:", spectrum["intensity"].isna().sum()) #intensity missing values count
+print("중복 파수 개수:", spectrum["shift"].dropna().duplicated().sum()) #duplicate wavenumber count
+print("파수가 매 행에서 증가하는가?", spectrum["shift"].diff().iloc[1:].gt(0).all()) #Check if wavenumber increases in every row
+
+region = spectrum.loc[spectrum["shift"].between(1550, 1750)] #looking for the region between 1550 and 1750 cm⁻¹
+spacing = region["shift"].diff().dropna() #checking the spacing between wavenumbers in the region
+
+print("1550–1750 cm⁻¹ 구간의 측정점 수:", len(region)) #number of measurement points in the 1550–1750 cm⁻¹ region
+print(f"파수 간격 (최소 / 중앙 / 최대): {spacing.min():.3f} / {spacing.median():.3f} / {spacing.max():.3f} cm⁻¹") #spacing between wavenumbers (min / median / max)
+```
+
+**Terminal output**
+
+```text
+파수 결측값 개수: 0
+강도 결측값 개수: 0
+중복 파수 개수: 0
+파수가 매 행에서 증가하는가? True
+1550–1750 cm⁻¹ 구간의 측정점 수: 158
+파수 간격 (최소 / 중앙 / 최대): 1.248 / 1.266 / 1.284 cm⁻¹
+```
+
+This completed my pre-smoothing data check. I recorded the median spacing so I could later relate each smoothing window, specified in points, to its approximate width in cm⁻¹.
