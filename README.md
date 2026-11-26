@@ -161,8 +161,6 @@ All three smoothing windows preserved the dominant amide I band in Figure 3, and
 
 I calculated each derivative across the full 1550–1750 cm⁻¹ region so that points just outside the tracking interval could contribute to the estimate near its boundaries. I used the spacing between adjacent points on the interpolated grid as `delta`, then zoomed in on 1640–1670 cm⁻¹ for Figure 4.
 
-<details>
-<summary>View the Python code for Figure 4</summary>
 
 ```python
 # Use the evenly spaced Raman shifts and intensities prepared for Figure 3.
@@ -190,8 +188,6 @@ ax_deriv.legend()
 fig_deriv.tight_layout()
 plt.show()
 ```
-
-</details>
 
 
 <img width="800" height="500" alt="Figure 2_Second Derivative of the hlAPP amide I band" src="https://github.com/user-attachments/assets/3e5ffdca-8ae7-4ee9-8f8f-bcd8f5da3df9" />
