@@ -147,12 +147,9 @@ fig.tight_layout()
 plt.show()
 ```
 
-![Original hIAPP SERS measurements overlaid with three smoothed curves. The widest window lowers the height of the dominant peak near 1655 cm⁻¹.](.\<img width="800" height="500" alt="Figure 1_Effect of smoothing window on the hlAPP amide I band" src="https://github.com/user-attachments/assets/553b45db-ffa5-4b36-891e-b0d1d747e31d" />![Uploading Figure 1_Effect of smoothing window on the hlAPP amide I band.png…]()
+![hIAPP amide I spectrum with 7-, 15-, and 25-point Savitzky–Golay smoothing windows](https://github.com/user-attachments/assets/553b45db-ffa5-4b36-891e-b0d1d747e31d)
 
-
-Figure 1_Effect of smoothing window on the hlAPP amide I band.png) 
-
-*Figure 3. SERS spectrum of 10 μM hIAPP after 2 h at pH 5.5. Black dots show the original measurements. Blue, orange, and green curves show the 7-, 15-, and 25-point windows, respectively. Measured from the first to the last point, these windows span approximately 7.6, 17.7, and 30.4 cm⁻¹.*
+*Figure 3. Effect of smoothing window length on the SERS spectrum of 10 μM hIAPP after 2 h at pH 5.5. Black dots show the original measurements. The 7-, 15-, and 25-point windows span approximately 7.6, 17.7, and 30.4 cm⁻¹ from the first to the last point.*
 
 The highest measured intensity was 2158.19 a.u. at 1655.660 cm⁻¹. All three smoothed curves retained the dominant band near this position and its gradual decline toward higher wavenumbers. The clearest difference was at the top of the band: the 7- and 15-point curves nearly overlapped, while the 25-point window produced a visibly lower maximum. The smaller feature near 1570 cm⁻¹ was also less pronounced with the widest window.
 
