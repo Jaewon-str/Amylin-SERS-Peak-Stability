@@ -118,3 +118,39 @@ Of the 24 measured points in the interval, the highest intensity was 2158.19 a.u
 **Tracking rule for the smoothing comparison**
 
 For each smoothing window, I will use the same 1640–1670 cm⁻¹ interval and identify local minima where the second derivative is negative. If there is one candidate, its position will be recorded. Likewise, if there are several, all their positions will be recorded. If there are none, I will record “no candidate detected.” This enables to test if the same feature remains identifiable as the smoothing window changes.
+
+### Comparing Savitzky–Golay smoothing windows
+
+Before calculating the second derivative, I examined how the smoothing window affected the shape of the dominant amide I band near 1655 cm⁻¹. I used the same spectrum for all three settings so that I could compare changes in the peak height and the slope on its higher-wavenumber side.
+
+Across the 1550–1750 cm⁻¹ region, the spacing between adjacent measurements ranged from 1.248 to 1.284 cm⁻¹. I used linear interpolation to obtain 158 evenly spaced points with the same endpoints as the original data. I then applied a Savitzky–Golay filter over this full region, using window lengths of 7, 15, and 25 points and keeping the polynomial order fixed at 3. This allowed measurements on both sides of the target band to contribute to smoothing.
+
+```python
+shift = region["shift"].to_numpy()
+intensity = region["intensity"].to_numpy()
+
+uniform_shift = np.linspace(shift[0], shift[-1], len(shift))
+uniform_intensity = np.interp(uniform_shift, shift, intensity)
+
+fig, ax = plt.subplots(figsize=(8, 5))
+ax.scatter(shift, intensity, s=12, color="black", label="Original data")
+
+for window in [7, 15, 25]:
+    smoothed = savgol_filter(uniform_intensity, window_length=window, polyorder=3)
+    ax.plot(uniform_shift, smoothed, label=f"{window}-point window")
+
+ax.set_xlabel("Raman shift (cm⁻¹)")
+ax.set_ylabel("SERS intensity (a.u.)")
+ax.set_title("Effect of smoothing window on the hIAPP amide I band")
+ax.legend()
+fig.tight_layout()
+plt.show()
+```
+
+![Original hIAPP SERS measurements overlaid with three smoothed curves. The widest window lowers the height of the dominant peak near 1655 cm⁻¹.](.\Figure 1_Effect of smoothing window on the hlAPP amide I band.png) 
+
+*Figure 3. SERS spectrum of 10 μM hIAPP after 2 h at pH 5.5. Black dots show the original measurements. Blue, orange, and green curves show the 7-, 15-, and 25-point windows, respectively. Measured from the first to the last point, these windows span approximately 7.6, 17.7, and 30.4 cm⁻¹.*
+
+The highest measured intensity was 2158.19 a.u. at 1655.660 cm⁻¹. All three smoothed curves retained the dominant band near this position and its gradual decline toward higher wavenumbers. The clearest difference was at the top of the band: the 7- and 15-point curves nearly overlapped, while the 25-point window produced a visibly lower maximum. The smaller feature near 1570 cm⁻¹ was also less pronounced with the widest window.
+
+To determine how sensitive the detected peak position is to smoothing, I will next compare the locations of negative local minima in the second derivative within the predefined 1640–1670 cm⁻¹ interval.
