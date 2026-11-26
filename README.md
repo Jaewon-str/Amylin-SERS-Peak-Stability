@@ -272,3 +272,21 @@ python3 inspect_spectrum.py
 ```
 
 The script displays the smoothed spectra (Figure 3) and their second derivatives (Figure 4). It also prints one minimum per window in the 1640–1670 cm⁻¹ interval. For the 7-, 15-, and 25-point windows, I obtained 1652.40, 1653.67, and 1654.93 cm⁻¹, respectively.
+
+## Reflection and next steps
+
+### Why I chose this project
+
+In an earlier project on microplastic Raman spectra, I tried smoothing and baseline correction, but I never checked how much those steps changed the peaks I wanted to study. That left me with a question I could test on a single spectrum. If I changed only the smoothing window, would I still report the same band position? I chose the amide I region of hIAPP because it connected that question to my interest in how researchers use spectroscopy to study protein structure.
+
+### What I learned
+
+The most useful part of this project was comparing what I saw in the intensity plot with what I could measure from the second derivative. The dominant band remained visible with all three smoothing windows, and I found one negative second-derivative minimum in the tracking interval each time. Yet its position moved from 1652.40 to 1654.93 cm⁻¹ as the window increased from 7 to 25 points. That difference of 2.53 cm⁻¹ was about twice the median spacing between measured points.
+
+I learned that “I can still see the band” and “I would report the same position” are two different claims. Defining the tracking interval and detection rule in advance helped me test each one consistently. Since all three calculations used the same spectrum, I could attribute the difference to my choice of smoothing window. Assigning that feature to a particular protein structure would require additional evidence.
+
+### What I would try next
+
+My next step would be to apply the same analysis to the 0 h spectrum in the same worksheet. I would keep the tracking interval, polynomial order, and three window lengths fixed, then ask whether the apparent difference between 0 h and 2 h persists across all three settings. If a setting yields no minimum or several candidates, I would report that outcome before attempting to compare positions.
+
+This comparison would let me test whether a conclusion about incubation time depends on how I process the spectra. To judge how reproducible that difference is, I would also need independent measurements at each time point.
