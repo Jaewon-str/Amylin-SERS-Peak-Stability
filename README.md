@@ -154,3 +154,21 @@ plt.show()
 The highest measured intensity was 2158.19 a.u. at 1655.660 cm⁻¹. All three smoothed curves retained the dominant band near this position and its gradual decline toward higher wavenumbers. The clearest difference was at the top of the band: the 7- and 15-point curves nearly overlapped, while the 25-point window produced a visibly lower maximum. The smaller feature near 1570 cm⁻¹ was also less pronounced with the widest window.
 
 To determine how sensitive the detected peak position is to smoothing, I will next compare the locations of negative local minima in the second derivative within the predefined 1640–1670 cm⁻¹ interval.
+
+### Comparing second-derivative minima across smoothing windows
+
+All three smoothing windows preserved the dominant amide I band in Figure 3, and i checked if they also placed its second-derivative minimum at the same Raman shift. The second derivative was calculated from the same evenly spaced spectrum using 7-, 15-, and 25-point Savitzky–Golay windows. I kept the polynomial order fixed at 3 and compared the curves within the predefined 1640–1670 cm⁻¹ interval.
+
+![Second-derivative curves showing a progressively shallower minimum at a higher Raman shift as the smoothing window increases](./amide_i_second_derivative.png)
+
+*Figure 4. Second derivative of the SERS spectrum of 10 μM hIAPP after 2 h at pH 5.5. The dashed line marks zero. The positions below are visual estimates from the plotted curves.*
+
+| Window length | Approximate minimum (cm⁻¹) | Appearance |
+|---|---:|---|
+| 7 points | 1652 | Deepest and narrowest minimum |
+| 15 points | 1654 | Intermediate depth and width |
+| 25 points | 1655 | Shallowest and broadest minimum |
+
+Each curve showed one visible negative minimum in the tracking interval. As the window increased from 7 to 25 points, the minimum became broader and shallower, and its apparent position moved by about 3 cm⁻¹ toward higher Raman shift.
+
+This comparison matters because a band position can inform a proposed structural assignment. Here, changing only the smoothing window moved the estimated minimum within a single spectrum. The broad feature remained visible across all three settings, but its precise location depended on how I processed the data. I will quantify that sensitivity by extracting the minimum positions in Python and comparing their spread with the spacing between measured points.
